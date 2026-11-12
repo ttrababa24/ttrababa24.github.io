@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Me</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Contact Me</h1>
+<form id="contact-form">
+    <p>
+        <label for="full-name">Full Name</label><br>
+        <input id="full-name" name="fullName" type="text" required>
+    </p>
+
+    <p>
+        <label for="email">Email Address</label><br>
+        <input id="email" name="email" type="email" required>
+    </p>
+
+    <p>
+        <label for="country">Country</label><br>
+        <input id="country" name="country" type="text" required>
+    </p>
+
+    <p>
+        <label for="comments">Comments</label><br>
+        <textarea id="comments" name="comments" rows="4" required></textarea>
+    </p>
+
+    <button type="submit">Submit</button>
+</form>
+<script>
+const form = document.getElementById("contact-form");
+form.noValidate = true;
+
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    for (const field of form.querySelectorAll("[required]")) {
+        if (field.value.trim() === "") {
+            alert("Please fill in all fields.");
+            field.focus();
+            return;
+        }
+    }
+
+    const email = document.getElementById("email");
+    if (!email.validity.valid) {
+        alert("Please enter a valid email address.");
+        email.focus();
+        return;
+    }
+
+    alert("Your form was submitted successfully!");
+    form.reset();
+});
+</script>
+</body>
+</html>
